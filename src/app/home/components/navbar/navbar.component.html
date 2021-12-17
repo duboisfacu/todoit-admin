@@ -1,0 +1,34 @@
+
+<div class="navigation">
+    <img class="logo" src="../assets/navbar/todoitorange.svg">
+    <a class="arrow a-back" closeSidebar>
+      <img class="form-logo" fill="#ff5100" width="8px" alt="logo" src="../assets/navbar/arrow.svg" />
+    </a>
+    <h3 id="message" class="user">Hola {{ currentClient }}!</h3>
+    <div class="item">
+      <img class="icon" src="../assets/navbar/panel.svg">
+      <p (click)="navigate('');" class="text">Panel</p>
+    </div>
+    <div class="item">
+      <img class="icon" src="../assets/navbar/register.svg">
+      <p (click)="navigate('register');" class="text">Registro</p>
+    </div>
+    <div class="item">
+      <img class="icon" src="../assets/navbar/travels.svg">
+      <p (click)="navigate('travels');" class="text">Viajes</p>
+    </div>
+    <div class="item">
+      <img class="icon" src="../assets/navbar/history.svg">
+      <p (click)="navigate('history');" class="text">Historial</p>
+    </div>
+    <div class="item">
+      <img class="icon" src="../assets/navbar/user.svg">
+      <p (click)="navigate('lists');" class="text">Usuarios</p>
+    </div>
+    <div class="logout">
+      <div class="item">
+        <img class="icon" src="../assets/navbar/logout.svg">
+        <p (click)="logout('');" class="text">Salir</p>
+      </div>
+    </div>
+  </div>

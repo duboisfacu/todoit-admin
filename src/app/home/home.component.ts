@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-
+  opened = true
+  toggleSidebar() {
+    this.opened = !this.opened;
+  }
   constructor() { }
 
   ngOnInit(): void {

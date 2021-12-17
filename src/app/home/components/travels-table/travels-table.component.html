@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <td>Cliente</td>
+    <td>Dirección</td>
+    <td>Estado</td>
+  </tr>
+  <tr *ngFor="let object of type; let s=index">
+    <td>{{object['travelEquipmentDTOs'][object['travelEquipmentDTOs'].length -1]['equipment']['cliente']['fullName']}}</td>
+    <td>{{object['travelEquipmentDTOs'][object['travelEquipmentDTOs'].length -1]['equipment']['cliente']['address']}}</td>
+    <td>
+        <select>
+            <option value="{{object['lastStatusTravel']}}" disabled hidden [selected]="true">{{status[(object['lastStatusTravel']) -1]}}</option>
+            <option *ngFor="let state of status; let i=index" value="{{i + 1}}">{{state}} </option>
+        </select>
+        
+    </td>
+  </tr>
+</table>
