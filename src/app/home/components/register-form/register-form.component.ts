@@ -3,14 +3,13 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { RegisterService } from '../../services/register.service';
 import { User } from '../../model/user';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.sass']
 })
 export class RegisterFormComponent implements OnInit {
-  // get f(){return this.signupForm.controls}
 
   public signupForm !: FormGroup;
   public type = this.router.url === '/home/register/cliente' ? true : false
@@ -19,7 +18,10 @@ export class RegisterFormComponent implements OnInit {
   a= this.router.events.subscribe(val => {
     if (this.router.url === '/home/register/cliente') {
       this.type = true
-    }else{this.type = false}
+    }else{
+      this.type = false
+      this.loadInputs()
+    }
   });
 
   submitForm(rol:number){
@@ -41,19 +43,33 @@ export class RegisterFormComponent implements OnInit {
     this.reg.register(user)
     .subscribe(res =>{
       console.log(res)
+      Swal.fire({
+        title: 'Usuario creado correctamente!',
+        icon: 'success',
+        confirmButtonText: 'Continuar',
+        confirmButtonColor: '#FD611A'
+      })
       })}
       
     
-
-  ngOnInit(): void {
+  loadInputs(){
     this.signupForm = this.fb.group({
       fullName: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
       cellPhone: new FormControl('', Validators.required),
-      vehicle: new FormControl('', Validators.required),
+      vehicle: new FormControl('', this.router.url === '/home/register/cliente' ? null : Validators.required)
     })
+  }
+
+  ngOnInit(): void {
+this.loadInputs()
+    console.log(this.signupForm)
+
+
+    
+
   }
 
 }

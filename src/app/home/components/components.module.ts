@@ -7,6 +7,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TravelsTableComponent } from './travels-table/travels-table.component';
 import { TravelsSelectorComponent } from './travels-selector/travels-selector.component';
+import { HistoryTableComponent } from './history-table/history-table.component';
 
 
 
@@ -16,7 +17,8 @@ import { TravelsSelectorComponent } from './travels-selector/travels-selector.co
     ButtonsComponent,
     RegisterFormComponent,
     TravelsTableComponent,
-    TravelsSelectorComponent
+    TravelsSelectorComponent,
+    HistoryTableComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { TravelsSelectorComponent } from './travels-selector/travels-selector.co
     ButtonsComponent,
     RegisterFormComponent,
     TravelsTableComponent,
-    TravelsSelectorComponent
+    TravelsSelectorComponent,
+    HistoryTableComponent
   ]
 })
 export class ComponentsModule { }

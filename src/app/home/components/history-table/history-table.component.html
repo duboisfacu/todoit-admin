@@ -1,0 +1,28 @@
+<h2 class="title">Historial de viajes</h2>
+<div>
+
+<input  (keyup)="onChange(serch.value)" class="form-control" placeholder="Filtrar viaje" #serch>
+<button *ngIf="cross" class="btn-cross" (click)="onChange(''); serch.value = '' ; serch.focus()">x</button>
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <tr class="titles" *ngIf="travels.length >0">
+          <td class="fw-bolder text-center">Cadete</td>
+          <td class="fw-bolder text-center">Cliente</td>
+          <td class="fw-bolder text-center">Fecha</td>
+          <td class="fw-bolder text-center">Hora</td>
+          <td class="fw-bolder text-center">Estado</td>
+        </tr>
+        <tr *ngFor="let object of travels2; let s=index">
+          <td>{{object['travelEquipmentDTOs'][object['travelEquipmentDTOs'].length -1]['cadete']['fullName'] }}</td>
+          <td>{{object['travelEquipmentDTOs'][object['travelEquipmentDTOs'].length -1]['equipment']['cliente']['fullName']}}</td>
+          <td>{{object['travelEquipmentDTOs'][object['travelEquipmentDTOs'].length -1]['operationDate'].toString().slice(0, 10)}}</td>
+          <td>{{object['travelEquipmentDTOs'][object['travelEquipmentDTOs'].length -1]['operationDate'].toString().slice(11, 16)}}</td>
+          <td>{{object['statusEquipment']}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="img-loading" *ngIf="loading">
+      <img class="loading" width="40px" src="../../../../assets/load.gif">
+    </div>

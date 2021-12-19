@@ -2,6 +2,7 @@ export interface Travel {
   "id": number,
   "creationDate": string,
   "lastStatusTravel": number,
+  "statusEquipment"?: string,
   "travelEquipmentDTOs": [
     {
       "id": number,
@@ -9,10 +10,10 @@ export interface Travel {
       "observation": string,
       "cadete": {
         "id": number,
-        "email": string,
+        "email"?: string,
         "fullName": string,
-        "address": string,
-        "cellPhone": number
+        "address"?: string,
+        "cellPhone"?: number
       },
       "operator": {
         "id": number,

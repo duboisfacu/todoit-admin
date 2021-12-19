@@ -7,19 +7,24 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./travels-selector.component.sass']
 })
 export class TravelsSelectorComponent implements OnInit {
+
+  constructor(private router: Router) { }
+
   navigate(prop:string) {
     this.router.navigate([`home/travels/${prop}`]);
   }
-  constructor(private router: Router) { }
 
-  public type:string = "" 
-  public isActives:boolean =false
-  public isPendings:boolean =false
-  public isCurrent:boolean =false
+  public type?:string
+  public isActives?:boolean
+  public isPendings?:boolean 
+  public isCurrent?:boolean
 
   navigationEnd= this.router.events.subscribe(val => {
     if (val instanceof NavigationEnd) {
       this.type = ''
+      this.isActives = false
+      this.isPendings =false
+      this.isCurrent = false
       if (this.router.url === '/home/travels/actives'){
         this.type = 'activos'
         this.isActives =true
@@ -32,9 +37,6 @@ export class TravelsSelectorComponent implements OnInit {
         }
     }})
     
-
-
-
   ngOnInit(): void {
   }
 

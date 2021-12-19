@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { ClientComponent } from './register/client/client.component';
 import { DeliveryComponent } from './register/delivery/delivery.component';
 import { TravelsComponent } from './travels/travels.component';
+import { HistoryComponent } from './history/history.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { TravelsComponent } from './travels/travels.component';
     RegisterComponent,
     ClientComponent,
     DeliveryComponent,
-    TravelsComponent
+    TravelsComponent,
+    HistoryComponent
   ],
   imports: [
     CommonModule,

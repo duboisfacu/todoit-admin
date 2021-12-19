@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-travels',
@@ -8,14 +7,8 @@ import { Router } from '@angular/router';
 })
 export class TravelsComponent implements OnInit {
 
-  constructor(private router: Router) { }
-  public type = this.router.url === '/home/register' ? false : true
+  constructor() { }
 
-  a= this.router.events.subscribe(val => {
-    if (this.router.url === '/home/register') {
-      this.type = false
-    }else{this.type = true}
-  });
   
   ngOnInit(): void {
 

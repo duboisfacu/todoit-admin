@@ -8,6 +8,7 @@ import { ActivesComponent } from './travels/actives/actives.component';
 import { CurrentsComponent } from './travels/currents/currents.component';
 import { PendingsComponent } from './travels/pendings/pendings.component';
 import { TravelsComponent } from './travels/travels.component';
+import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [{
   path: '',
@@ -42,7 +43,9 @@ const routes: Routes = [{
         }
       ]
     },
-
+    {
+      path: 'history',
+      component: HistoryComponent}
 
   ]
 

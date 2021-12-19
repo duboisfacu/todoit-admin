@@ -1,7 +1,11 @@
 <h2 class="title">Viajes {{type}}</h2>
 <select required name="select" #device class="form-control" (change)="navigate(device.value)">
-    <option value="null" disabled hidden [selected]="true">Seleccionar tabla</option>
+    <option *ngIf="!isCurrent && !isPendings && !isActives"   [selected]="true">Seleccionar tabla</option>
     <option value="actives" [selected]="isActives">Activos</option>
     <option value="pendings" [selected]="isPendings">Pendientes</option>
     <option value="currents" [selected]="isCurrent">En curso</option>
   </select>
+
+<div>
+  <img *ngIf="!isCurrent && !isPendings && !isActives" class="illustration" src="../assets/illustrations/travel_ill.svg" />
+</div>

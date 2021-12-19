@@ -1,18 +1,29 @@
-<table>
+<div class="table-responsive">
+<table class="table mt-3" *ngIf="type.length > 0">
   <tr>
-    <td>Cliente</td>
-    <td>Dirección</td>
-    <td>Estado</td>
+    <td class="fw-bolder text-center" >Cliente</td>
+    <td class="fw-bolder text-center" >Dirección</td>
+    <td class="fw-bolder text-center" >Estado</td>
   </tr>
   <tr *ngFor="let object of type; let s=index">
     <td>{{object['travelEquipmentDTOs'][object['travelEquipmentDTOs'].length -1]['equipment']['cliente']['fullName']}}</td>
     <td>{{object['travelEquipmentDTOs'][object['travelEquipmentDTOs'].length -1]['equipment']['cliente']['address']}}</td>
     <td>
-        <select>
-            <option value="{{object['lastStatusTravel']}}" disabled hidden [selected]="true">{{status[(object['lastStatusTravel']) -1]}}</option>
-            <option *ngFor="let state of status; let i=index" value="{{i + 1}}">{{state}} </option>
+        <select name="select" #device  (change)="changeState(device.value, object, this.device)">
+            <option  value="{{object['lastStatusTravel']}}" disabled hidden selected="true">{{status[(object['lastStatusTravel']) -1]}}</option>
+            <option  *ngFor="let state of status; let i=index" value="{{i + 1}}">{{state}}</option>
         </select>
-        
+
+        <button (click)="observation(object['travelEquipmentDTOs'][object['travelEquipmentDTOs'].length -1]['observation'])" *ngIf="object['travelEquipmentDTOs'][object['travelEquipmentDTOs'].length -1]['observation']" class="btn-eye">
+          <img class="eye" fill="#FD611A" width="20px" src="../../../../assets/eye.svg">
+        </button>
+        <button *ngIf="!object['travelEquipmentDTOs'][object['travelEquipmentDTOs'].length -1]['observation']" class="btn-clear">
+          <img fill="#FD111A" width="20px">
+        </button>
     </td>
   </tr>
 </table>
+</div>
+<div class="img-loading" *ngIf="loading && page">
+  <img class="loading" width="40px" src="../../../../assets/load.gif">
+</div>
