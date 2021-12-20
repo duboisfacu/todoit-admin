@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { UserList } from 'src/app/home/model/userList';
+import Swal from 'sweetalert2';
 import {
   FormGroup,
   FormBuilder,
@@ -162,6 +163,12 @@ export class UsersTableComponent implements OnInit {
       this.router.navigate([this.router.url]);
     });
     this.closePopup();
+    Swal.fire({
+      title: 'Usuario eliminado correctamente!',
+      icon: 'success',
+      confirmButtonText: 'Continuar',
+      confirmButtonColor: '#FD611A',
+    });
   }
   submitForm() {
     let user: UserList = {
@@ -188,25 +195,33 @@ export class UsersTableComponent implements OnInit {
       this.router.navigated = false;
       this.router.navigate([this.router.url]);
     });
+
     this.closePopup();
+    Swal.fire({
+      title: 'Usuario modificado correctamente!',
+      icon: 'success',
+      confirmButtonText: 'Continuar',
+      confirmButtonColor: '#FD611A',
+    });
   }
 
   onLoad(rol?: number) {
     this.user.get().subscribe((resp) => {
       this.loading = false;
-      console.log(resp);
-      this.type = resp.filter((type) => {
+      // console.log(resp);
+      resp = resp.filter((type) => {
         return type.isDeleted === false;
       });
+      console.log(resp);
       if (rol) {
-        this.type = this.type.filter((type) => {
+        this.type = resp.filter((type) => {
           return type.rol.id === rol;
         });
       } else {
         this.type = resp;
       }
       this.type2 = this.type;
-      console.log(this.type);
+      // console.log(this.type);
     });
   }
 

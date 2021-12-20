@@ -197,6 +197,7 @@ export class TravelsTableComponent implements OnInit {
   }
 
   changeState(statusTravel: string, object: Travel, d: HTMLSelectElement) {
+    // if (statusTravel !== this.status[object.lastStatusTravel - 1]) {
     if (statusTravel === '10') {
       if (
         object.lastStatusTravel !== 1 &&
@@ -260,6 +261,7 @@ export class TravelsTableComponent implements OnInit {
           }"`,
           icon: 'error',
           confirmButtonText: 'Continuar',
+          confirmButtonColor: '#FD611A',
         });
       }
     } else if (
@@ -280,6 +282,7 @@ export class TravelsTableComponent implements OnInit {
       this.getDelivery();
       this.deliverySelect(object.id, Number(statusTravel), object, d);
     }
+    // }
   }
 
   getDelivery() {
