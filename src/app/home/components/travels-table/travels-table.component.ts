@@ -79,7 +79,6 @@ export class TravelsTableComponent implements OnInit {
         forkJoin([this.travel.get(1), this.travel.get(5)]).subscribe((res) => {
           this.type = [...res[0], ...res[1]];
           this.loading = false;
-          console.log(res);
 
           this.type.sort(function (a: Travel, b: Travel) {
             return (

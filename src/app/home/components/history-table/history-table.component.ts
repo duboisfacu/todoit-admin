@@ -109,7 +109,6 @@ export class HistoryTableComponent implements OnInit {
           return a.lastStatusTravel - b.lastStatusTravel;
         });
 
-        console.log(this.travels);
         this.loading = false;
         this.travels2 = this.travels;
         this.travels2.filter((value: Travel) => {
@@ -126,7 +125,6 @@ export class HistoryTableComponent implements OnInit {
                   .cadete?.fullName
               : 'Sin Cadete',
           };
-          console.log(value);
         });
       }
     );

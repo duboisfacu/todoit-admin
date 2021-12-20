@@ -55,7 +55,6 @@ export class UsersTableComponent implements OnInit {
 
     this.Usertype = user.rol.id;
     this.displayStyle = 'block';
-    console.log(user.fullName);
   }
   openDeletePopup(user: UserList) {
     this.userToDelete = user;
@@ -155,9 +154,7 @@ export class UsersTableComponent implements OnInit {
     if (this.modify.value.rol === 2) {
       user.vehicle = { id: this.userToDelete.vehicle.id };
     }
-    this.user.post(user).subscribe((res) => {
-      console.log(res);
-    });
+    this.user.post(user).subscribe((res) => {});
     this.router.navigateByUrl(this.router.url).then(() => {
       this.router.navigated = false;
       this.router.navigate([this.router.url]);
@@ -188,9 +185,7 @@ export class UsersTableComponent implements OnInit {
     if (this.modify.value.rol === 2) {
       user.vehicle = { id: this.modify.value.vehicle };
     }
-    this.user.post(user).subscribe((res) => {
-      console.log(res);
-    });
+    this.user.post(user).subscribe((res) => {});
     this.router.navigateByUrl(this.router.url).then(() => {
       this.router.navigated = false;
       this.router.navigate([this.router.url]);
@@ -208,11 +203,9 @@ export class UsersTableComponent implements OnInit {
   onLoad(rol?: number) {
     this.user.get().subscribe((resp) => {
       this.loading = false;
-      // console.log(resp);
       resp = resp.filter((type) => {
         return type.isDeleted === false;
       });
-      console.log(resp);
       if (rol) {
         this.type = resp.filter((type) => {
           return type.rol.id === rol;
@@ -221,7 +214,6 @@ export class UsersTableComponent implements OnInit {
         this.type = resp;
       }
       this.type2 = this.type;
-      // console.log(this.type);
     });
   }
 

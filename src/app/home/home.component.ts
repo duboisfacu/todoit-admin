@@ -31,13 +31,11 @@ export class HomeComponent implements OnInit {
     }
   });
   ngOnInit(): void {
-    console.log(this.router.url);
     if (this.router.url === '/home') {
       this.panel = true;
     }
     // hechos
     this.home.getTravel(9).subscribe((resp) => {
-      console.log(resp);
       this.cantFinished = resp.length;
     });
 

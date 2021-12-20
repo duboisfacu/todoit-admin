@@ -52,7 +52,6 @@ export class RegisterFormComponent implements OnInit {
     }
     this.reg.register(user).subscribe(
       (res) => {
-        console.log(res);
         Swal.fire({
           title: 'Usuario creado correctamente!',
           icon: 'success',
@@ -105,11 +104,9 @@ export class RegisterFormComponent implements OnInit {
         cellPhone: new FormControl('', Validators.required),
       });
     }
-    console.log(this.router.url);
   }
 
   ngOnInit(): void {
     this.loadInputs();
-    console.log(this.signupForm);
   }
 }
