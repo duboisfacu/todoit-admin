@@ -57,15 +57,21 @@ export class HomeComponent implements OnInit {
     );
     // clientes
     this.home.getUser().subscribe((resp) => {
-      this.cantClient = resp.filter((e) => e.rol?.id === 1).length;
+      this.cantClient = resp.filter(
+        (e) => e.rol?.id === 3 && e.isDeleted === false
+      ).length;
     });
     // cadetes
     this.home.getUser().subscribe((resp) => {
-      this.cantDelivery = resp.filter((e) => e.rol?.id === 2).length;
+      this.cantDelivery = resp.filter(
+        (e) => e.rol?.id === 2 && e.isDeleted === false
+      ).length;
     });
     // admins
     this.home.getUser().subscribe((resp) => {
-      this.cantAdmin = resp.filter((e) => e.rol?.id === 3).length;
+      this.cantAdmin = resp.filter(
+        (e) => e.rol?.id === 1 && e.isDeleted === false
+      ).length;
     });
   }
 }
