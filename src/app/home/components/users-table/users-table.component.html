@@ -1,0 +1,206 @@
+<div *ngIf="isAdmin || isAll || isClient || isDelivery">
+  <input
+    (keyup)="onChange(serch.value)"
+    class="form-control"
+    placeholder="Filtrar usuario"
+    #serch
+  />
+  <button
+    *ngIf="cross"
+    class="btn-cross"
+    (click)="onChange(''); serch.value = ''; serch.focus()"
+  >
+    x
+  </button>
+</div>
+<div class="table-responsive">
+  <table class="table mt-3" *ngIf="type.length > 0">
+    <tr>
+      <td class="fw-bolder text-center">Nombre</td>
+      <td *ngIf="isAll" class="fw-bolder text-center">Rol</td>
+      <td class="fw-bolder text-center">Dirección</td>
+      <td class="fw-bolder text-center">Teléfono</td>
+      <td class="fw-bolder text-center">Email</td>
+      <td *ngIf="isDelivery" class="fw-bolder text-center">Vehículo</td>
+      <td class="fw-bolder text-center">Acciones</td>
+    </tr>
+    <tr *ngFor="let user of type2; let s = index">
+      <td>{{ user["fullName"] }}</td>
+      <td *ngIf="isAll">{{ user["rol"]["name"] }}</td>
+      <td>{{ user["address"] }}</td>
+      <td>{{ user["cellPhone"] }}</td>
+      <td>{{ user["email"] }}</td>
+      <td *ngIf="isDelivery">
+        {{ user["vehicle"] ? user["vehicle"]["name"] : "Ninguno" }}
+      </td>
+      <td>
+        <button class="action" (click)="openPopup(user)">
+          <img src="../../../../assets/edit.svg" />
+        </button>
+        <button class="action" (click)="openDeletePopup(user)">
+          <img src="../../../../assets/delete.svg" />
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="img-loading" *ngIf="loading && page">
+  <img class="loading" width="40px" src="../../../../assets/load.gif" />
+</div>
+
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: displayStyle }"
+  data-keyboard="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title fw-bolder">
+          Modificar
+          {{
+            Usertype === 3
+              ? "cliente"
+              : Usertype === 2
+              ? "cadete"
+              : "administrador"
+          }}
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form
+          [formGroup]="modify"
+          (ngSubmit)="submitForm()"
+          class="text-center mt-2 frm"
+          action="#"
+        >
+          <label>Nombre completo</label>
+          <input
+            required
+            minlength="4"
+            formControlName="fullName"
+            type="text"
+            class="form-control"
+            name="fullName"
+            placeholder="Nombre y apellido"
+          />
+          <label>Email</label>
+          <input
+            [email]="true"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+            formControlName="email"
+            type="email"
+            class="form-control"
+            name="email"
+            placeholder="Email"
+          />
+          <label>Dirección</label>
+          <input
+            required
+            minlength="5"
+            formControlName="address"
+            type="street"
+            class="form-control"
+            name="address"
+            placeholder="Dirección"
+          />
+          <label>Número de celular</label>
+          <input
+            required
+            minlength="4"
+            formControlName="cellPhone"
+            type="tel"
+            class="form-control"
+            name="phone"
+            placeholder="Número de celular"
+          />
+          <label>Rol</label>
+          <select
+            required
+            name="select"
+            formControlName="rol"
+            class="form-control"
+          >
+            <option value="null" disabled hidden [selected]="true">Rol</option>
+            <option value="1">Administrador</option>
+            <option value="2">Cadete</option>
+            <option value="3">Cliente</option>
+          </select>
+
+          <div *ngIf="Usertype === 2" class="mb-4">
+            <select
+              required
+              name="select"
+              formControlName="vehicle"
+              class="form-control"
+            >
+              <option
+                *ngIf="isVehicle"
+                value="null"
+                disabled
+                hidden
+                [selected]="true"
+              >
+                Vehículo
+              </option>
+              <option value="1">Bicicleta</option>
+              <option value="2">Motocicleta</option>
+              <option value="3">Automóvil</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancel" (click)="closePopup()">
+          Cancelar
+        </button>
+        <button
+          [disabled]="!modify.valid"
+          type="submit"
+          class="btn btn-accept"
+          (click)="submitForm()"
+        >
+          Modificar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal-backdrop"
+  onclick="closePopup()"
+  [ngStyle]="{ display: displayStyle }"
+  *ngIf="isAdmin || isAll || isClient || isDelivery"
+></div>
+
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: displayStyleDelete }"
+  data-keyboard="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title fw-bolder">¿Estás seguro?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-cancel" (click)="closePopup()">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-accept" (click)="deleteUser()">
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal-backdrop"
+  onclick="closePopup()"
+  [ngStyle]="{ display: displayStyleDelete }"
+  *ngIf="isAdmin || isAll || isClient || isDelivery"
+></div>

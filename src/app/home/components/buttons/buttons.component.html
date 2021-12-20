@@ -1,7 +1,23 @@
-<h2 class="title">Registr{{type}}</h2>
-<button class="{{registerButton ? 'active' : 'inactive'}}" (click)="navigate('cliente')">Cliente</button>
-<button class="{{myRegisterButton ? 'active' : 'inactive'}}" (click)="navigate('cadete');">Cadete</button>
+<h2 class="title">Registrar {{ type }}</h2>
+<select
+  required
+  name="select"
+  #device
+  class="form-control"
+  (change)="navigate(device.value)"
+>
+  <option *ngIf="!isAdmin && !isDelivery && !isClient" [selected]="true">
+    Seleccionar usuario
+  </option>
+  <option value="cliente" [selected]="isClient">Cliente</option>
+  <option value="cadete" [selected]="isDelivery">Cadete</option>
+  <option value="admin" [selected]="isAdmin">Administrador</option>
+</select>
 
 <div>
-<img *ngIf="!registerButton&& !myRegisterButton" class="illustration" src="../assets/illustrations/register_ill.svg" />
+  <img
+    *ngIf="!isClient && !isDelivery && !isAdmin"
+    class="illustration"
+    src="../assets/illustrations/register_ill.svg"
+  />
 </div>

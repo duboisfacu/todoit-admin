@@ -290,10 +290,11 @@ export class TravelsTableComponent implements OnInit {
           return e.email;
         });
       let idDeliveryList: any = resp
-        .filter((e) => e.rol?.id === 2)
+        .filter((e) => e.rol?.id === 2 && e.isDeleted === false)
         .map((e) => {
           return e.id;
         });
+
       let result: any = {};
       for (let index = 0; index < emailDeliveryList.length; ++index) {
         if (idDeliveryList !== undefined) {

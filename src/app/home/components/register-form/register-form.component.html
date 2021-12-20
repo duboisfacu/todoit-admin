@@ -1,37 +1,101 @@
-   <div>
-     <form [formGroup]="signupForm" (ngSubmit)="submitForm(type ? 3: 2)" class="text-center mt-4 frm shadow" action="#">
-       <h3 class="fw-normal py-3 pb-4">{{type ? 'Nuevo cliente' : 'Nuevo cadete'}}</h3>
-       <div class="mb-4">
-         <input required minlength="4" formControlName="fullName" type="text" class="form-control" name="fullName"
-           placeholder="Nombre y apellido">
-       </div>
-       <div class="mb-4">
-         <input [email]="true" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" formControlName="email" type="email"
-           class="form-control" name="email" placeholder="Email">
-       </div>
-       <div class="mb-4">
-         <input required minlength="3" formControlName="password" type="password" class="form-control" name="password"
-           placeholder="Contraseña">
-       </div>
-       <div class="mb-4">
-         <input required minlength="5" formControlName="address" type="street" class="form-control" name="address"
-           placeholder="Dirección">
-       </div>
-       <div class="mb-4">
-         <input required minlength="4" formControlName="cellPhone" type="tel" class="form-control" name="phone"
-           placeholder="Número de celular">
-       </div>
-       <div *ngIf="!type" class="mb-4">
-         <select required name="select" formControlName="vehicle" class="form-control">
-           <option value="null" disabled hidden [selected]="true">Vehículo</option>
-           <option value="1">Bicicleta</option>
-           <option value="2">Motocicleta</option>
-           <option value="3">Automóvil</option>
-         </select>
-       </div>
-       <div >
-         <button [disabled]="!signupForm.valid" type="submit"
-           class="btn text-white btn-form">{{type ? 'Registrar Cliente' : 'Registrar Cadete'}}</button>
-       </div>
-     </form>
-   </div>
+<div>
+  <form
+    [formGroup]="signupForm"
+    (ngSubmit)="submitForm(type === 3 ? 3 : type === 2 ? 2 : 1)"
+    class="text-center mt-4 frm shadow"
+    action="#"
+  >
+    <h3 class="fw-normal py-3 pb-4">
+      {{
+        type === 3
+          ? "Nuevo cliente"
+          : type === 2
+          ? "Nuevo cadete"
+          : "Nuevo administrador"
+      }}
+    </h3>
+    <div class="mb-4">
+      <input
+        required
+        minlength="4"
+        formControlName="fullName"
+        type="text"
+        class="form-control"
+        name="fullName"
+        placeholder="Nombre y apellido"
+      />
+    </div>
+    <div class="mb-4">
+      <input
+        [email]="true"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+        formControlName="email"
+        type="email"
+        class="form-control"
+        name="email"
+        placeholder="Email"
+      />
+    </div>
+    <div class="mb-4">
+      <input
+        required
+        minlength="3"
+        formControlName="password"
+        type="password"
+        class="form-control"
+        name="password"
+        placeholder="Contraseña"
+      />
+    </div>
+    <div class="mb-4">
+      <input
+        required
+        minlength="5"
+        formControlName="address"
+        type="street"
+        class="form-control"
+        name="address"
+        placeholder="Dirección"
+      />
+    </div>
+    <div class="mb-4">
+      <input
+        required
+        minlength="4"
+        formControlName="cellPhone"
+        type="tel"
+        class="form-control"
+        name="phone"
+        placeholder="Número de celular"
+      />
+    </div>
+    <div *ngIf="type === 2" class="mb-4">
+      <select
+        required="{{ type === 2 ? true : false }}"
+        name="select"
+        formControlName="vehicle"
+        class="form-control"
+      >
+        <option value="null" disabled hidden [selected]="true">Vehículo</option>
+        <option value="1">Bicicleta</option>
+        <option value="2">Motocicleta</option>
+        <option value="3">Automóvil</option>
+      </select>
+    </div>
+    <div>
+      <button
+        [disabled]="!signupForm.valid"
+        type="submit"
+        class="btn text-white btn-form"
+      >
+        {{
+          type === 3
+            ? "Registrar Cliente"
+            : type === 2
+            ? "Registrar Cadete"
+            : "Registrar Administrador"
+        }}
+      </button>
+    </div>
+  </form>
+</div>

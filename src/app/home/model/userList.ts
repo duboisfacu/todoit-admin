@@ -1,7 +1,7 @@
 import { Rol } from './rol';
 import { Vehicle } from './vehicle';
 
-export interface User {
+export interface UserList {
   id?: number;
   email: string;
   fullName: string;
@@ -11,6 +11,6 @@ export interface User {
   isDeleted?: boolean;
   observations?: string;
   password: string;
-  vehicle?: Vehicle;
+  vehicle: Vehicle;
   rol: Rol;
 }

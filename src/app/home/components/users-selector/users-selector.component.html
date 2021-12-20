@@ -1,0 +1,12 @@
+<h2 class="title">Lista{{type}}</h2>
+<select required name="select" #device class="form-control" (change)="navigate(device.value)">
+    <option *ngIf="!isClient && !isDelivery && !isAdmin && !isAll" [selected]="true">Seleccionar lista</option>
+    <option value="cliente" [selected]="isClient">Clientes</option>
+    <option value="cadete" [selected]="isDelivery">Cadetes</option>
+    <option value="admin" [selected]="isAdmin">Administradores</option>
+    <option value="todos" [selected]="isAll">Todos</option>
+  </select>
+
+<div>
+  <img *ngIf="!isClient && !isDelivery && !isAdmin && !isAll" class="illustration" src="../assets/illustrations/users_ill.svg" />
+</div>

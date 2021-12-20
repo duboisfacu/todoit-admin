@@ -1,5 +1,5 @@
 export interface Rol {
-  id:number,
-  name?:string,
-  isDeleted?:boolean,
+  id: number;
+  name?: string;
+  isDeleted?: boolean;
 }

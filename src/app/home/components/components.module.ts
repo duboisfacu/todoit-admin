@@ -8,8 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TravelsTableComponent } from './travels-table/travels-table.component';
 import { TravelsSelectorComponent } from './travels-selector/travels-selector.component';
 import { HistoryTableComponent } from './history-table/history-table.component';
-
-
+import { UsersSelectorComponent } from './users-selector/users-selector.component';
+import { UsersTableComponent } from './users-table/users-table.component';
 
 @NgModule({
   declarations: [
@@ -18,21 +18,20 @@ import { HistoryTableComponent } from './history-table/history-table.component';
     RegisterFormComponent,
     TravelsTableComponent,
     TravelsSelectorComponent,
-    HistoryTableComponent
+    HistoryTableComponent,
+    UsersSelectorComponent,
+    UsersTableComponent,
   ],
-  imports: [
-    CommonModule,
-    SidebarModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
+  imports: [CommonModule, SidebarModule, FormsModule, ReactiveFormsModule],
   exports: [
     NavbarComponent,
     ButtonsComponent,
     RegisterFormComponent,
     TravelsTableComponent,
     TravelsSelectorComponent,
-    HistoryTableComponent
-  ]
+    HistoryTableComponent,
+    UsersSelectorComponent,
+    UsersTableComponent,
+  ],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}

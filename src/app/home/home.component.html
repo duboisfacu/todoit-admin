@@ -2,12 +2,55 @@
   <ng-sidebar [autoCollapseWidth]="600" [(opened)]="opened">
     <app-navbar></app-navbar>
   </ng-sidebar>
-  <div ng-sidebar-content class="h-100 ">
-    <button class="openbar" (click)="toggleSidebar()"></button>
+  <div ng-sidebar-content class="h-100">
+    <img
+      src="../../assets/toggle-img.svg"
+      class="openbar"
+      (click)="toggleSidebar()"
+    />
+
     <div class="content">
+      <router-outlet class="router"></router-outlet>
+    </div>
+    <div *ngIf="panel" class="panel">
+      <h2 class="h2">Estadísticas generales</h2>
 
-      <router-outlet class=router></router-outlet>
-
+      <div class="container">
+        <div class="row top">
+          <div class="col-4 text-center">
+            <img class="icon" src="../../assets/iconPages/listW.svg" />
+            <h3 class="title">Clientes</h3>
+            <h3 class="number">{{ cantClient }}</h3>
+          </div>
+          <div class="col-4 text-center">
+            <img class="icon" src="../../assets/iconPages/listW.svg" />
+            <h3 class="title">Cadetes</h3>
+            <h3 class="number">{{ cantDelivery }}</h3>
+          </div>
+          <div class="col-4 text-center">
+            <img class="icon" src="../../assets/iconPages/listW.svg" />
+            <h3 class="title">Admins</h3>
+            <h3 class="number">{{ cantAdmin }}</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 text-center">
+            <img class="icon" src="../../assets/iconPages/travelsW.svg" />
+            <h3 class="title">Pendientes</h3>
+            <h3 class="number">{{ cantPending }}</h3>
+          </div>
+          <div class="col-4 text-center">
+            <img class="icon" src="../../assets/iconPages/travelsW.svg" />
+            <h3 class="title">En curso</h3>
+            <h3 class="number">{{ cantCurrent }}</h3>
+          </div>
+          <div class="col-4 text-center">
+            <img class="icon" src="../../assets/iconPages/travelsW.svg" />
+            <h3 class="title">Hechos</h3>
+            <h3 class="number">{{ cantFinished }}</h3>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </ng-sidebar-container>
