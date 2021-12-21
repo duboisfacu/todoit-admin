@@ -82,40 +82,19 @@ export class HistoryTableComponent implements OnInit {
   }
 
   onLoad() {
-    let one = this.history.get(1);
-    let two = this.history.get(2);
-    let three = this.history.get(3);
-    let four = this.history.get(4);
-    let five = this.history.get(5);
-    let six = this.history.get(6);
-    let seven = this.history.get(7);
-    let eight = this.history.get(8);
-    let nine = this.history.get(9);
+    this.history.get(9).subscribe((results) => {
+      this.travels = results;
 
-    forkJoin([one, two, three, four, five, six, seven, eight, nine]).subscribe(
-      (results) => {
-        this.travels = [
-          ...results[0],
-          ...results[1],
-          ...results[3],
-          ...results[4],
-          ...results[5],
-          ...results[6],
-          ...results[7],
-          ...results[8],
-        ];
+      this.travels.sort(function (a: Travel, b: Travel) {
+        return a.lastStatusTravel - b.lastStatusTravel;
+      });
 
-        this.travels.sort(function (a: Travel, b: Travel) {
-          return a.lastStatusTravel - b.lastStatusTravel;
-        });
-
-        this.loading = false;
-        this.travels2 = this.travels;
-        this.travels2.filter((value: Travel) => {
-          value.statusEquipment = this.status[value.lastStatusTravel - 1];
-          value.travelEquipmentDTOs[
-            value.travelEquipmentDTOs.length - 1
-          ].cadete = {
+      this.loading = false;
+      this.travels2 = this.travels;
+      this.travels2.filter((value: Travel) => {
+        value.statusEquipment = this.status[value.lastStatusTravel - 1];
+        value.travelEquipmentDTOs[value.travelEquipmentDTOs.length - 1].cadete =
+          {
             id: value.travelEquipmentDTOs[value.travelEquipmentDTOs.length - 1]
               .cadete?.id,
             fullName: value.travelEquipmentDTOs[
@@ -125,9 +104,8 @@ export class HistoryTableComponent implements OnInit {
                   .cadete?.fullName
               : 'Sin Cadete',
           };
-        });
-      }
-    );
+      });
+    });
   }
 
   ngOnInit(): void {
