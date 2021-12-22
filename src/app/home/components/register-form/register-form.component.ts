@@ -56,8 +56,9 @@ export class RegisterFormComponent implements OnInit {
           title: 'Usuario creado correctamente!',
           icon: 'success',
           confirmButtonText: 'Continuar',
-          confirmButtonColor: '#FD611A',
+          confirmButtonColor: '#FD7315',
         });
+        this.signupForm.reset();
       },
       (err) => {
         if ((err = err.error === 'Usuario ya existe')) {
@@ -65,14 +66,14 @@ export class RegisterFormComponent implements OnInit {
             title: 'El email ingresado ya existe!',
             icon: 'error',
             confirmButtonText: 'Continuar',
-            confirmButtonColor: '#FD611A',
+            confirmButtonColor: '#FD7315',
           });
         } else {
           Swal.fire({
             title: 'Error inesperado',
             icon: 'error',
             confirmButtonText: 'Continuar',
-            confirmButtonColor: '#FD611A',
+            confirmButtonColor: '#FD7315',
           });
         }
       }

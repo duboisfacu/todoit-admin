@@ -164,7 +164,7 @@ export class UsersTableComponent implements OnInit {
       title: 'Usuario eliminado correctamente!',
       icon: 'success',
       confirmButtonText: 'Continuar',
-      confirmButtonColor: '#FD611A',
+      confirmButtonColor: '#FD7315',
     });
   }
   submitForm() {
@@ -196,7 +196,7 @@ export class UsersTableComponent implements OnInit {
       title: 'Usuario modificado correctamente!',
       icon: 'success',
       confirmButtonText: 'Continuar',
-      confirmButtonColor: '#FD611A',
+      confirmButtonColor: '#FD7315',
     });
   }
 

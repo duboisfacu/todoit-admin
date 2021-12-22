@@ -133,7 +133,7 @@ export class TravelsTableComponent implements OnInit {
       cancelButtonColor: '#9b4b27',
       reverseButtons: true,
       confirmButtonText: 'Continuar',
-      confirmButtonColor: '#FD611A',
+      confirmButtonColor: '#FD7315',
       input: 'select',
       inputOptions: { 'Cadetes:': this.emailDeliveryList },
       inputLabel: 'Selecciona un cadete:',
@@ -162,7 +162,7 @@ export class TravelsTableComponent implements OnInit {
                   this.status[statusTravel - 1]
                 }" correctamente.`,
                 confirmButtonText: 'Continuar',
-                confirmButtonColor: '#FD611A',
+                confirmButtonColor: '#FD7315',
                 icon: 'success',
               });
 
@@ -216,7 +216,7 @@ export class TravelsTableComponent implements OnInit {
           cancelButtonText: 'Cancelar',
           cancelButtonColor: '#9b4b27',
           reverseButtons: true,
-          confirmButtonColor: '#FD611A',
+          confirmButtonColor: '#FD7315',
           icon: 'warning',
         }).then((result) => {
           if (result.isConfirmed) {
@@ -260,7 +260,7 @@ export class TravelsTableComponent implements OnInit {
           }"`,
           icon: 'error',
           confirmButtonText: 'Continuar',
-          confirmButtonColor: '#FD611A',
+          confirmButtonColor: '#FD7315',
         });
       }
     } else if (
@@ -312,7 +312,7 @@ export class TravelsTableComponent implements OnInit {
       title: `Motivo de estado actual:`,
       text: `"${obs}"`,
       confirmButtonText: 'Cerrar',
-      confirmButtonColor: '#FD611A',
+      confirmButtonColor: '#FD7315',
     });
   }
 
